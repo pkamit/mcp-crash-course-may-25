@@ -5,11 +5,17 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "aiohttp>=3.12.8",
     "black>=25.1.0",
+    "chromadb>=1.0.12",
     "gradio>=5.32.0",
     "isort>=6.0.1",
     "langchain-mcp-adapters>=0.1.4",
     "langchain[openai]>=0.3.25",
     "langgraph>=0.4.7",
+    "openai>=1.82.1",
+    "openai-agents>=0.0.16",
+    "pandas>=2.2.3",
+    "playwright>=1.52.0",
     "python-dotenv>=1.1.0",
 ]
