@@ -1,0 +1,10 @@
+{ "index": { "_index": "products" } }
+{ "sku": "LAP12345", "name": "Laptop Pro 15", "model": "LP-15-2023", "price": 999.99, "category": "Electronics", "stock": 34, "color": "Silver", "size": "15 inch", "specification": { "cpu": "Intel i7", "ram": "16GB", "storage": "512GB SSD", "os": "Windows 11" } }
+{ "index": { "_index": "products" } }
+{ "sku": "MOB54321", "name": "Smartphone X", "model": "SMX-5G", "price": 699.99, "category": "Electronics", "stock": 120, "color": "Black", "size": "6.5 inch", "specification": { "cpu": "Snapdragon 8 Gen 1", "ram": "8GB", "storage": "128GB", "os": "Android 13" } }
+{ "index": { "_index": "products" } }
+{ "sku": "SHO98765", "name": "Running Shoes", "model": "RS-2024", "price": 89.99, "category": "Footwear", "stock": 200, "color": "Blue", "size": "10", "specification": { "material": "Mesh", "sole": "Rubber", "weight": "300g" } }
+{ "index": { "_index": "products" } }
+{ "sku": "LAP67890", "name": "UltraBook Slim", "model": "UBS-14", "price": 1199.99, "category": "Electronics", "stock": 20, "color": "Space Gray", "size": "14 inch", "specification": { "cpu": "Intel i9", "ram": "32GB", "storage": "1TB SSD", "os": "Windows 11 Pro" } }
+{ "index": { "_index": "products" } }
+{ "sku": "TAB24680", "name": "Tablet Air", "model": "TA-2024", "price": 449.00, "category": "Electronics", "stock": 75, "color": "Rose Gold", "size": "10 inch", "specification": { "cpu": "Apple A14", "ram": "4GB", "storage": "64GB", "os": "iPadOS 17" } }

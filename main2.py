@@ -16,24 +16,28 @@ PRODUCTS_CSV = "flipkart_products.csv"
 df = pd.read_csv(PRODUCTS_CSV)
 df.columns = df.columns.str.strip()
 
+
 def extract_product_id(url):
     try:
-        return url.split('/')[-1]
+        return url.split("/")[-1]
     except Exception:
         return None
 
-df['product_id'] = df['url'].apply(extract_product_id)
+
+df["product_id"] = df["url"].apply(extract_product_id)
+
 
 def lookup_product(product_id):
-    row = df[df['product_id'] == product_id]
+    row = df[df["product_id"] == product_id]
     if row.empty:
         return None
     row = row.iloc[0]
     return {
         "name": row["name"],
         "price": row.get("price", ""),
-        "highlights": row["highlights"]
+        "highlights": row["highlights"],
     }
+
 
 async def format_with_gpt35(product_info):
     prompt = (
@@ -51,6 +55,7 @@ async def format_with_gpt35(product_info):
     )
     return response.choices[0].message.content.strip()
 
+
 async def chat_fn(message, history):
     product_id = message.strip()
     product_info = lookup_product(product_id)
@@ -59,11 +64,12 @@ async def chat_fn(message, history):
     markdown = await format_with_gpt35(product_info)
     return markdown
 
+
 demo = gr.ChatInterface(
     fn=chat_fn,
     title="Flipkart Product Info Chat",
     description="Enter a product ID (e.g., itma403c7d655267) to get product highlights.",
-    type="messages"
+    type="messages",
 )
 
 if __name__ == "__main__":

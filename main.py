@@ -36,7 +36,6 @@ async def fetch_tools():
     #     print(await page.title())
     #     await browser.close()
 
-
     playwright_params = {"command": "npx", "args": ["@playwright/mcp@latest"]}
 
     # async with MCPServerStdio(
@@ -57,7 +56,7 @@ async def fetch_tools():
     #     file_tools = await server.list_tools()
     #     for tool in file_tools:
     #         print(f"{tool.name}")
-# Updated instructions for price hunting
+    # Updated instructions for price hunting
     price_instructions = """
     You browse e-commerce sites to find product prices. You:
     1. Navigate to major retailers (Amazon, Flipkart, etc.)
@@ -69,27 +68,32 @@ async def fetch_tools():
     7. Always verify price matches the correct product
     """
 
-    async with MCPServerStdio(params=files_params, client_session_timeout_seconds=30) as mcp_server_files:
-        async with MCPServerStdio(params=playwright_params, client_session_timeout_seconds=30) as mcp_server_browser:
+    async with MCPServerStdio(
+        params=files_params, client_session_timeout_seconds=30
+    ) as mcp_server_files:
+        async with MCPServerStdio(
+            params=playwright_params, client_session_timeout_seconds=30
+        ) as mcp_server_browser:
             agent = Agent(
-                name="PriceHunter", 
+                name="PriceHunter",
                 instructions=price_instructions,  # Updated instructions
                 model="gpt-4.1-mini",
-                mcp_servers=[mcp_server_files, mcp_server_browser]
-                )
+                mcp_servers=[mcp_server_files, mcp_server_browser],
+            )
             with trace("price_check"):
                 # Modified query with price-focused parameters
                 result = await Runner.run(
-                    agent, 
+                    agent,
                     "Find the current price of PlayStation 5 on any e-commerce site. "
-                    "Provide the details as markdown with product name, price, source URL, and date."
+                    "Provide the details as markdown with product name, price, source URL, and date.",
                 )
 
-                print(result.final_output)    
+                print(result.final_output)
     output_path = os.path.join(sandbox_path, "ps5_prices.md")
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(result.final_output)
-    print(f"Results saved to {output_path}")                     
+    print(f"Results saved to {output_path}")
+
 
 async def agent_response(message, history):
     client = MultiServerMCPClient(
