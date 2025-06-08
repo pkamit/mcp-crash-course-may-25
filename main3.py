@@ -13,6 +13,9 @@ from agents import Agent, Runner, trace
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+# Add to environment variables
+GRADIO_USER = os.getenv("GRADIO_USERNAME")
+GRADIO_PASS = os.getenv("GRADIO_PASSWORD")
 
 # --- Load and preprocess all CSVs ---
 csv_files = glob.glob("*_products.csv")
@@ -124,4 +127,9 @@ demo = gr.ChatInterface(
 )
 
 if __name__ == "__main__":
-    demo.launch()
+    # Modify launch command
+    demo.launch(
+        auth=(GRADIO_USER, GRADIO_PASS),
+        auth_message="🔒 Enter credentials to access product search",
+        rate_limit=[10, 300]
+    )
